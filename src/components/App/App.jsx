@@ -43,6 +43,7 @@ const App = () => {
       setCurrentPage(page + 1);
     } catch (error) {
       setError(true);
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -51,6 +52,7 @@ const App = () => {
   const openModal = imageData => {
     setModalIsOpen(true);
     setDataModal(imageData);
+    console.log(modalIsOpen);
   };
 
   const closeModal = () => {
@@ -80,7 +82,7 @@ const App = () => {
       {modalIsOpen && (
         <ImageModal
           modalIsOpen={modalIsOpen}
-          modalIsClose={closeModal}
+          closeModal={closeModal}
           dataModal={dataModal}
         />
       )}

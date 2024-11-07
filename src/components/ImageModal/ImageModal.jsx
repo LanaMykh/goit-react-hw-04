@@ -18,7 +18,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const ImageModal = ({ modalIsOpen, modalIsClose, dataModal }) => {
+const ImageModal = ({ modalIsOpen, closeModal, dataModal }) => {
   function afterOpenModal() {
     document.body.style.overflow = 'hidden';
   }
@@ -27,9 +27,10 @@ const ImageModal = ({ modalIsOpen, modalIsClose, dataModal }) => {
     document.body.style.overflow = 'auto';
   }
 
-  function closeModal() {
-    modalIsClose();
+  function closeCard() {
+    closeModal();
   }
+  console.log('mod');
 
   return (
     <div>
@@ -37,7 +38,7 @@ const ImageModal = ({ modalIsOpen, modalIsClose, dataModal }) => {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onAfterClose={afterCloseModal}
-        onRequestClose={closeModal}
+        onRequestClose={closeCard}
         style={customStyles}
       >
         <div className={styles.modalCard}>
