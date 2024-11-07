@@ -9,7 +9,7 @@ export const fetchImage = async (searchValue, currentPage) => {
     params: {
       client_id: client_id,
       query: searchValue,
-      currentPage,
+      page: currentPage,
     }
   };
     const response = await axios.get('/search/photos', axiosOptions);
