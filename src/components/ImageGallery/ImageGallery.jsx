@@ -3,10 +3,10 @@ import styles from './ImageGallery.module.css';
 
 const ImageGallery = ({ cards }) => {
   return (
-    <ul className={styles.list}>
+    <ul className={styles.gallery}>
       {cards.map(card => (
-        <li className={styles.card} key={card.id}>
-          <ImageCard />
+        <li className={styles.galleryItem} key={card.id}>
+          <ImageCard card={card} />
         </li>
       ))}
     </ul>

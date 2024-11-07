@@ -4,57 +4,44 @@ import ImageModal from '../ImageModal/ImageModal';
 import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
+import { fetchImage } from '../../image-api.js';
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const App = () => {
-  // const [feedbacks, setFeedbacks] = useState(() => {
+  const [searchValue, setSearchValue] = useState(null);
+  const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  //   const saveFeedbacks = localStorage.getItem("saveFeedbacks");
+  const handleSearch = async searchValue => {
+    try {
+      // console.log(searchValue);
 
-  //   return (saveFeedbacks === null ? {
-  //     good: 0,
-  //     neutral: 0,
-  //     bad: 0
-  //   } : JSON.parse(saveFeedbacks));
+      setError(false);
+      setLoading(true);
 
-  // }
-  // );
+      const data = await fetchImage(searchValue, 1);
+      const galleryCards = data.results;
 
-  // useEffect(() => {
-  //   localStorage.setItem("saveFeedbacks",JSON.stringify(feedbacks));
-  // }, [feedbacks]);
+      setGallery(galleryCards);
 
-  // const updateFeedback = feedbackType => {
-  //   setFeedbacks({ ...feedbacks, [feedbackType]: feedbacks[feedbackType] + 1 });
-  // };
-
-  // const resetFeedback = () => {
-  //   setFeedbacks({
-  //     good: 0,
-  //     neutral: 0,
-  //     bad: 0,
-  //   });
-  // };
+      // console.log(galleryCards);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
-      <SearchBar />
-      <ImageGallery />
-      <ImageModal />
-      <ErrorMessage />
-      <Loader />
-      <LoadMoreBtn />
-
-      {/* {totalFeedback === 0 ? (
-        <Notification />
-      ) : (
-        <Feedback
-          feedbacks={feedbacks}
-          totalFeedback={totalFeedback}
-          positiveFeedback={positiveFeedback}
-        />
-      )} */}
+      <SearchBar onSearch={handleSearch} />
+      {error && <ErrorMessage />}
+      <ImageGallery cards={gallery} />
+      {loading && <Loader />}
+      {/* <LoadMoreBtn /> */}
+      {/* <ImageModal /> */}
     </>
   );
 };
