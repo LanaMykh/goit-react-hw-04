@@ -9,23 +9,26 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    overflow: 'hidden',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
 };
 
-Modal.setAppElement('#yourAppElement');
+Modal.setAppElement('#root');
 
 const ImageModal = ({ modalIsOpen, modalIsClose, dataModal }) => {
-  function openModal() {
-    setIsOpen(true);
+  function afterOpenModal() {
+    document.body.style.overflow = 'hidden';
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
+  function afterCloseModal() {
+    document.body.style.overflow = 'auto';
   }
 
   function closeModal() {
-    setIsOpen(false);
+    modalIsClose();
   }
 
   return (
@@ -33,12 +36,13 @@ const ImageModal = ({ modalIsOpen, modalIsClose, dataModal }) => {
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
+        onAfterClose={afterCloseModal}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div>
+        <div className={styles.modalCard}>
           <img
-            className={styles.modalImage}
+            className={styles.modalImg}
             src={dataModal.urls.regular}
             alt={dataModal.alt_description}
           />

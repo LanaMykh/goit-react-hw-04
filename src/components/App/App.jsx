@@ -77,7 +77,7 @@ const App = () => {
 
       {loading && <Loader />}
 
-      {isOpenModal && (
+      {modalIsOpen && (
         <ImageModal
           modalIsOpen={modalIsOpen}
           modalIsClose={closeModal}
