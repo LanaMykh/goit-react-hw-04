@@ -7,11 +7,9 @@ const customStyles = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     overflow: 'hidden',
-    width: '90vw', // Максимальна ширина — 90% ширини екрану
-    height: '90vh', // Максимальна висота — 90% висоти екрану
+    width: '90vw',
+    height: '90vh',
     padding: '20px',
-    // background: 'transparent',
-    // backgroundColor: 'rgba(255, 255, 255, 0.5)',
     border: 'none',
   },
   overlay: {
@@ -50,7 +48,7 @@ const ImageModal = ({ modalIsOpen, closeModal, dataModal }) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '100%', // Займає всю висоту модального вікна
+            height: '100%',
           }}
         >
           <img
@@ -60,7 +58,7 @@ const ImageModal = ({ modalIsOpen, closeModal, dataModal }) => {
             style={{
               maxWidth: '100%',
               maxHeight: '100%',
-              objectFit: 'contain', // Масштабує зображення, зберігаючи пропорції
+              objectFit: 'contain',
             }}
           />
           {dataModal && (
