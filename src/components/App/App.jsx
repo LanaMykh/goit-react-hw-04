@@ -52,7 +52,6 @@ const App = () => {
   const openModal = imageData => {
     setModalIsOpen(true);
     setDataModal(imageData);
-    console.log(modalIsOpen);
   };
 
   const closeModal = () => {

@@ -2,9 +2,8 @@ import styles from './ImageCard.module.css';
 
 const ImageCard = ({ card, openModal }) => {
   const onClickCard = () => {
-    console.log('click');
-
     openModal(card);
+    console.log(card);
   };
 
   return (
